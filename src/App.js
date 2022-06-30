@@ -54,7 +54,7 @@ function App() {
       )}
       {token && (
         <div className='user-info'>
-          <p>Name - {name ? name : 'Loading...'}</p>
+          <p className='user-name'>Name - {name ? name : 'Loading...'}</p>
           <p>Email - {email ? email : 'Loading...'}</p>
         </div>
       )}

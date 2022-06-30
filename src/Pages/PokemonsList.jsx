@@ -37,7 +37,7 @@ const PokemonsList = () => {
   };
 
   return (
-    <div className='list__of__pokemon'>
+    <div className='list-of-pokemon'>
       <ul>
         <InfiniteScroll
           dataLength={filteredArr?.length}
