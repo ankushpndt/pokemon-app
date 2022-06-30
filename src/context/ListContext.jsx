@@ -5,20 +5,15 @@ export const ListProvider = ({ children }) => {
   const [pokemons, setPokemons] = useState([]);
   const [search, setSearch] = useState('');
   const [filteredArr, setFilteredArr] = useState([...pokemons]);
-  // const [loading, setLoading] = useState(false);
-  // const [loadMore, setLoadMore] = useState(
-  // 	"https://pokeapi.co/api/v2/pokemon?limit=50&offset=0"
-  // );
-  const [page, setPage] = useState(50);
 
+  const [page, setPage] = useState(50);
+  const [savedPokemon, setSavedPokemon] = useState([]);
   useEffect(() => {
     (async () => {
       try {
         const response = await axios.get(
           `https://pokeapi.co/api/v2/pokemon?limit=50&offset=0`
         );
-
-        // setLoadMore(response?.data?.next);
 
         function pokemonDetailsFunc(result) {
           result?.forEach(async (pokemon) => {
@@ -47,6 +42,8 @@ export const ListProvider = ({ children }) => {
         setSearch,
         page,
         setPage,
+        savedPokemon,
+        setSavedPokemon,
       }}
     >
       {children}

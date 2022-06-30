@@ -3,7 +3,7 @@ import PokemonStats from './PokemonStats';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { usePokemonList } from '../context/ListContext';
-const PokemonDetails = ({ image, name, id, type, stats }) => {
+const SavedDetails = ({ image, name, id, type, stats }) => {
   const style = type + ' thumb-container';
   const { savedPokemon, setSavedPokemon } = usePokemonList();
   const saveHandler = () => {
@@ -37,4 +37,4 @@ const PokemonDetails = ({ image, name, id, type, stats }) => {
   );
 };
 
-export default PokemonDetails;
+export default SavedDetails;
