@@ -5,6 +5,7 @@ import { v4 } from 'uuid';
 
 const SavedPokemon = () => {
   const { savedPokemon } = usePokemonList();
+  console.log({ savedPokemon });
   return (
     <div>
       <h1>SavedPokemon</h1>
@@ -14,8 +15,8 @@ const SavedPokemon = () => {
             <SavedDetails
               id={pokemon?.id}
               name={pokemon?.name}
-              image={pokemon?.sprites?.other?.dream_world?.front_default}
-              type={pokemon?.types ? pokemon?.types[0]?.type?.name : undefined}
+              image={pokemon?.image}
+              type={pokemon?.type ? pokemon?.type : undefined}
               stats={pokemon?.stats}
             />
           </div>

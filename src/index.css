@@ -64,14 +64,16 @@ code {
 }
 .thumb-container {
   display: flex;
+  gap: 1rem;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 1.5rem 0;
-  margin: 0.3rem;
+  margin: 0.5rem;
   border: 1px solid #efefef;
   border-radius: 0.2rem;
-  min-width: 160px;
+  /* width: 100%; */
+  min-width: 200px;
   text-align: center;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.089);
   position: relative;

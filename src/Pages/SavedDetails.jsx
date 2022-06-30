@@ -6,13 +6,13 @@ import { usePokemonList } from '../context/ListContext';
 const SavedDetails = ({ image, name, id, type, stats }) => {
   const style = type + ' thumb-container';
   const { savedPokemon, setSavedPokemon } = usePokemonList();
-  const saveHandler = () => {
-    setSavedPokemon((currentList) => [
-      ...currentList,
-      { image, name, id, type, stats },
-    ]);
-  };
-
+  //   const saveHandler = () => {
+  //     setSavedPokemon((currentList) => [
+  //       ...currentList,
+  //       { image, name, id, type, stats },
+  //     ]);
+  //   };
+  console.log({ image, name, id, type });
   return (
     <>
       <div className={style}>
@@ -27,9 +27,9 @@ const SavedDetails = ({ image, name, id, type, stats }) => {
           <small>Type: {type}</small>
         </div>
       </div>
-      <button className='save-btn' onClick={saveHandler}>
+      {/* <button className='save-btn' onClick={saveHandler}>
         Save
-      </button>
+      </button> */}
       <div>
         <PokemonStats stats={stats} />
       </div>
