@@ -2,7 +2,7 @@ import './App.css';
 import { Routes, Route, NavLink } from 'react-router-dom';
 import PokemonsList from './Pages/PokemonsList';
 import LoginButton from './Pages/Login';
-import { useEffect, useState } from 'react';
+
 import { gapi } from 'gapi-script';
 import { PrivateRoute } from './PrivateRoute';
 import LogoutButton from './Pages/Logout';
@@ -32,13 +32,26 @@ function App() {
       <p>{name}</p>
       <p>{email}</p>
       {token && <Searchbar />}
-      {/* {!token && <LoginButton />} */}
       {token && <LogoutButton />}
-      {/* {token && <PokemonsList />} */}
+      {token && <NavLink to='/list'>Home</NavLink>}
       {token && <NavLink to='/saved'>SAved</NavLink>}
       <Routes>
-        <Route path='/list' element={<PokemonsList />} />
-        <Route path='/saved' element={<SavedPokemon />} />
+        <Route
+          path='/list'
+          element={
+            <PrivateRoute>
+              <PokemonsList />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path='/saved'
+          element={
+            <PrivateRoute>
+              <SavedPokemon />
+            </PrivateRoute>
+          }
+        />
         <Route path='/' element={<LoginButton />} />
       </Routes>
     </div>
