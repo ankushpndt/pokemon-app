@@ -2,7 +2,6 @@ import './App.css';
 import { Routes, Route, NavLink } from 'react-router-dom';
 import PokemonsList from './Pages/PokemonsList';
 import LoginButton from './Pages/Login';
-
 import { gapi } from 'gapi-script';
 import { PrivateRoute } from './PrivateRoute';
 import LogoutButton from './Pages/Logout';
@@ -10,32 +9,28 @@ import { useGoogleAuth } from './context/GoogleAuthContext';
 import { Searchbar } from './Pages/Searchbar';
 import SavedPokemon from './Pages/SavedPokemon';
 function App() {
-  // const [token, setToken] = useState("");
-  // useEffect(() => {
-  // 	function start() {
-  // 		gapi.client.init({
-  // 			clientId: process.env.REACT_APP_CLIENT_ID,
-  // 			scope: "",
-  // 		});
-  // 	}
-  // 	gapi.load("client:auth2", start);
-  // 	setToken(gapi?.auth?.getToken()?.access_token);
-  // }, [token]);
-  // console.log(token);
-  const { googleAuth } = useGoogleAuth();
-  const token = googleAuth?.googleUser?.accessToken;
-  const name = googleAuth?.googleUser?.profileObj?.name;
-  const email = googleAuth?.googleUser?.profileObj?.email;
+  const { token, name, email } = useGoogleAuth();
+
   return (
     <div className='App'>
-      <h1>Pokemon App</h1>
-      <p>{name}</p>
-      <p>{email}</p>
-      {token && <Searchbar />}
-      {token && <LogoutButton />}
-      {token && <NavLink to='/list'>Home</NavLink>}
-      {token && <NavLink to='/saved'>SAved</NavLink>}
+      {token && (
+        <nav className='nav-bar'>
+          <div className='left-container'>
+            {token && <NavLink to='/list'>Home</NavLink>}
+            {token && <NavLink to='/saved'>Saved Pokemons</NavLink>}
+          </div>
+          <div className='search-bar'>{token && <Searchbar />}</div>
+          <div className='right-container'>{token && <LogoutButton />}</div>
+        </nav>
+      )}
+      {token && (
+        <div className='user-info'>
+          <p>Name - {name ? name : 'Loading...'}</p>
+          <p>Email - {email ? email : 'Loading...'}</p>
+        </div>
+      )}
       <Routes>
+        <Route path='/' element={<LoginButton />} />
         <Route
           path='/list'
           element={
@@ -52,7 +47,6 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route path='/' element={<LoginButton />} />
       </Routes>
     </div>
   );

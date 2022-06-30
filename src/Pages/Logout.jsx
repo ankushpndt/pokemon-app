@@ -1,9 +1,18 @@
-import React from "react";
-import { useGoogleAuth } from "../context/GoogleAuthContext";
+import React from 'react';
+import { useGoogleAuth } from '../context/GoogleAuthContext';
 
 const LogoutButton = () => {
-	const { googleAuth } = useGoogleAuth();
-	return <button onClick={googleAuth?.signOut}>Logout</button>;
+  const { googleAuth, userLogout } = useGoogleAuth();
+  const clickHandler = async () => {
+    await googleAuth?.signOut();
+    userLogout();
+  };
+
+  return (
+    <button className='logout-btn' onClick={clickHandler}>
+      Logout
+    </button>
+  );
 };
 
 export default LogoutButton;

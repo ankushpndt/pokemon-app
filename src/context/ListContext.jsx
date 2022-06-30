@@ -5,7 +5,6 @@ export const ListProvider = ({ children }) => {
   const [pokemons, setPokemons] = useState([]);
   const [search, setSearch] = useState('');
   const [filteredArr, setFilteredArr] = useState([...pokemons]);
-
   const [page, setPage] = useState(50);
   const [savedPokemon, setSavedPokemon] = useState([]);
   useEffect(() => {

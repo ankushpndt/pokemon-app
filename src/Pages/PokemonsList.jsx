@@ -46,21 +46,24 @@ const PokemonsList = () => {
           loader={<h4>Loading...</h4>}
           style={{ display: 'flex', flexWrap: 'wrap' }}
         >
-          {filteredArr?.map((pokemon) => {
-            return (
-              <div key={v4()} className='pokemon-container'>
-                <PokemonDetails
-                  id={pokemon?.id}
-                  name={pokemon?.name}
-                  image={pokemon?.sprites?.other?.dream_world?.front_default}
-                  type={
-                    pokemon?.types ? pokemon?.types[0]?.type?.name : undefined
-                  }
-                  stats={pokemon?.stats}
-                />
-              </div>
-            );
-          })}
+          {filteredArr
+            ?.slice(0)
+            .sort((a, b) => a?.id - b?.id)
+            .map((pokemon) => {
+              return (
+                <div key={v4()} className='pokemon-container'>
+                  <PokemonDetails
+                    id={pokemon?.id}
+                    name={pokemon?.name}
+                    image={pokemon?.sprites?.other?.dream_world?.front_default}
+                    type={
+                      pokemon?.types ? pokemon?.types[0]?.type?.name : undefined
+                    }
+                    stats={pokemon?.stats}
+                  />
+                </div>
+              );
+            })}
         </InfiniteScroll>
       </ul>
     </div>
