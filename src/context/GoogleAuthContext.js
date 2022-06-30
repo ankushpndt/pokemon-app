@@ -18,7 +18,6 @@ export const GoogleAuthProvider = ({ children }) => {
   const email = googleAuth?.googleUser?.profileObj?.email;
   const loginWithCredentials = async ({ response }) => {
     try {
-      console.log(response);
       loginUser({ token: response?.accessToken });
     } catch (error) {
       console.log(error);

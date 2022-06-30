@@ -243,3 +243,28 @@ h3 {
   min-width: 50%;
   margin-top: 1rem;
 }
+.saved-pokemon-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.empty-container {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.saved-icon-container {
+  position: relative;
+}
+.saved-pokemon-count {
+  position: absolute;
+  background-color: red;
+  border-radius: 50%;
+  color: white;
+  left: 22%;
+  top: 2%;
+  display: flex;
+  padding: 0 7px 2px 7px;
+  justify-content: center;
+  align-items: center;
+}

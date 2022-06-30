@@ -5,7 +5,6 @@ import { useGoogleAuth } from '../context/GoogleAuthContext';
 const LoginButton = () => {
   const { googleAuth, token, loginWithCredentials } = useGoogleAuth();
   const navigate = useNavigate();
-
   useEffect(() => {
     token && navigate('/list');
   }, [token, navigate]);
@@ -14,7 +13,6 @@ const LoginButton = () => {
     const response = await googleAuth?.signIn();
     loginWithCredentials({ response });
   };
-
   return (
     <>
       <div className='login-btn-container'>
