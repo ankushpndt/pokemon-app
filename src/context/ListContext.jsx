@@ -12,30 +12,28 @@ export const ListProvider = ({ children }) => {
   useEffect(() => {
     (async () => {
       try {
-        if (token) {
-          const response = await axios.get(
-            `https://pokeapi.co/api/v2/pokemon?limit=50&offset=0`
-          );
+        const response = await axios.get(
+          `https://pokeapi.co/api/v2/pokemon?limit=50&offset=0`
+        );
 
-          function pokemonDetailsFunc(result) {
-            result?.forEach(async (pokemon) => {
-              const response = await axios.get(
-                ` https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
-              );
+        function pokemonDetailsFunc(result) {
+          result?.forEach(async (pokemon) => {
+            const response = await axios.get(
+              ` https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
+            );
 
-              setPokemons((currentList) => [...currentList, response?.data]);
-            });
-          }
-          pokemonDetailsFunc(response?.data?.results);
-        } else {
-          setSavedPokemon([]);
+            setPokemons((currentList) => [...currentList, response?.data]);
+          });
         }
+        pokemonDetailsFunc(response?.data?.results);
       } catch (err) {
         console.log(err);
       }
     })();
+  }, []);
+  useEffect(() => {
+    !token && setSavedPokemon([]);
   }, [token]);
-
   return (
     <ListContext.Provider
       value={{
